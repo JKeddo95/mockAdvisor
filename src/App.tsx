@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <div>
-        <a href="https://www.youtube.com/watch?v=8fcSviC7cRM" target="_blank">
+        <a href="https://jkeddo95.github.io/mockAdvisor/" target="_blank">
           <img src={racecarLogo} className="logo" alt="Vite logo" />
         </a>
       </div>
