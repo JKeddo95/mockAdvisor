@@ -35,17 +35,17 @@ const SideBarComponent = () => {
   const handleDateOfBirthChange = (e: React.ChangeEvent<HTMLInputElement>) => setDateOfBirth(e.target.value);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-      <div>
+    <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", maxWidth: "60%" }}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
         First Name: <input value={firstName} onChange={handleFirstNameChange} />
       </div>
-      <div>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
         Last Name: <input value={lastName} onChange={handleLastNameChange} />
       </div>
-      <div>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
         Middle Initial: <input value={middleInitial} onChange={handleMiddleInitialChange} />
       </div>
-      <div>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
         Date of Birth: <input type="date" value={dateOfBirth} onChange={handleDateOfBirthChange} />
       </div>
       <div>{dateOfBirth}</div>
