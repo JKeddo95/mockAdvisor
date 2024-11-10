@@ -1,6 +1,7 @@
 import { useState } from "react";
 import racecarLogo from "/racecar.svg";
 import "./App.css";
+import { Sidebar } from "./components/Sidebar";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,42 +16,11 @@ function App() {
       <h1>Mock Advisor: A Demo</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <SideBarComponent />
+        <Sidebar />
       </div>
       <code className="read-the-docs">I want to make a difference!</code>
     </>
   );
 }
-
-const SideBarComponent = () => {
-  // Handle "Auth Advisor Experts" corrections of AI errors/hallucinations.
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [middleInitial, setMiddleInitial] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
-
-  const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value);
-  const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value);
-  const handleMiddleInitialChange = (e: React.ChangeEvent<HTMLInputElement>) => setMiddleInitial(e.target.value);
-  const handleDateOfBirthChange = (e: React.ChangeEvent<HTMLInputElement>) => setDateOfBirth(e.target.value);
-
-  return (
-    <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", maxWidth: "60%" }}>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        First Name: <input value={firstName} onChange={handleFirstNameChange} />
-      </div>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        Last Name: <input value={lastName} onChange={handleLastNameChange} />
-      </div>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        Middle Initial: <input value={middleInitial} onChange={handleMiddleInitialChange} />
-      </div>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        Date of Birth: <input type="date" value={dateOfBirth} onChange={handleDateOfBirthChange} />
-      </div>
-      <div>{dateOfBirth}</div>
-    </div>
-  );
-};
 
 export default App;
