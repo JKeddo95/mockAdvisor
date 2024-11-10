@@ -35,7 +35,7 @@ const SideBarComponent = () => {
   const handleDateOfBirthChange = (e: React.ChangeEvent<HTMLInputElement>) => setDateOfBirth(e.target.value);
 
   return (
-    <div style={{ flex: "flex-grow" }}>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
       <div>
         First Name: <input value={firstName} onChange={handleFirstNameChange} />
       </div>
