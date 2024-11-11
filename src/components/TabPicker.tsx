@@ -14,23 +14,11 @@ export const TabPicker = () => {
       case "":
         return <div>Please Select a Tab!</div>;
       case "kidsleaderboard":
-        return (
-          <div>
-            <KidsLeaderboard />
-          </div>
-        );
+        return <KidsLeaderboard />;
       case "kidsmenu":
-        return (
-          <div>
-            <KidsMenu />
-          </div>
-        );
+        return <KidsMenu />;
       case "scoremenu":
-        return (
-          <div>
-            <ScoreMenu />
-          </div>
-        );
+        return <ScoreMenu />;
       default:
         return <div>Invalid Selection {chosenTab}!</div>;
     }
@@ -48,15 +36,21 @@ export const TabPicker = () => {
         marginTop: "3em",
       }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        Choose Your Tab:
-        <div onChange={handleChosenTabChange}>
-          <input type="radio" value="kidsleaderboard" name="tabname" />
-          <input type="radio" value="kidsmenu" name="tabname" />
-          <input type="radio" value="scoremenu" name="tabname" />
-        </div>
+      <span> Choose Your Tab:</span>
+      <div onChange={handleChosenTabChange} style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", maxWidth: "50%" }}>
+        <span style={{ display: "flex", justifyContent: "space-between" }}>
+          <input type="radio" value="kidsleaderboard" name="tabname" /> Kids Leaderboard
+        </span>
+        <span style={{ display: "flex", justifyContent: "space-between" }}>
+          <input type="radio" value="kidsmenu" name="tabname" /> Kids Menu
+        </span>
+        <span style={{ display: "flex", justifyContent: "space-between" }}>
+          <input type="radio" value="scoremenu" name="tabname" /> Score Screen
+        </span>
       </div>
-      {getTabContent()}
+      <div>
+        You chose <code>{chosenTab}</code>
+      </div>
     </div>
   );
 };
