@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Sidebar } from "./Sidebar/Sidebar";
 import { KidsLeaderboard } from "./KidsLeaderboard/KidsLeaderboard";
 import { KidsMenu } from "./KidsMenu/KidsMenu";
@@ -32,7 +32,7 @@ export const TabPicker = () => {
           </div>
         );
       default:
-        return <div>Invalid Selection!</div>;
+        return <div>Invalid Selection {chosenTab}!</div>;
     }
   };
 
@@ -49,7 +49,12 @@ export const TabPicker = () => {
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        Choose Your Tab: <input value={chosenTab} onChange={handleChosenTabChange} />
+        Choose Your Tab:
+        <div onChange={handleChosenTabChange}>
+          <input type="radio" value="kidsleaderboard" name="tabname" />
+          <input type="radio" value="kidsmenu" name="tabname" />
+          <input type="radio" value="scoremenu" name="tabname" />
+        </div>
       </div>
       {getTabContent()}
     </div>

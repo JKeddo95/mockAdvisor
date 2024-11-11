@@ -13,7 +13,7 @@ function App() {
           <img src={racecarLogo} className="logo" alt="Vite logo" />
         </a>
       </div>
-      <h1>Mock Advisor: A Demo</h1>
+      <h1>Shotir Shotir: Parenting App </h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
         <TabPicker />
