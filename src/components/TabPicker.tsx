@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { Sidebar } from "./Sidebar/Sidebar";
+import { KidsLeaderboard } from "./KidsLeaderboard/KidsLeaderboard";
+import { KidsMenu } from "./KidsMenu/KidsMenu";
+import { ScoreMenu } from "./ScoreMenu/ScoreMenu";
 
 export const TabPicker = () => {
   // Handle "Auth Advisor Experts" corrections of AI errors/hallucinations.
@@ -9,14 +13,24 @@ export const TabPicker = () => {
     switch (chosenTab) {
       case "":
         return <div>Please Select a Tab!</div>;
-      case "a":
-        return <div>a</div>;
-      case "b":
-        return <div>b</div>;
-      case "c":
-        return <div>c</div>;
-      case "d":
-        return <div>d</div>;
+      case "kidsleaderboard":
+        return (
+          <div>
+            <KidsLeaderboard />
+          </div>
+        );
+      case "kidsmenu":
+        return (
+          <div>
+            <KidsMenu />
+          </div>
+        );
+      case "scoremenu":
+        return (
+          <div>
+            <ScoreMenu />
+          </div>
+        );
       default:
         return <div>Invalid Selection!</div>;
     }
@@ -50,6 +64,7 @@ export const TabPicker = () => {
  *
  * V2
  * Unit tests
+ * Routing library
  * React Context
  * Types
  *
