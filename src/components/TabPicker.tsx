@@ -5,7 +5,6 @@ import { KidsMenu } from "./KidsMenu/KidsMenu";
 import { ScoreMenu } from "./ScoreMenu/ScoreMenu";
 
 export const TabPicker = () => {
-  // Handle "Auth Advisor Experts" corrections of AI errors/hallucinations.
   const [chosenTab, setChosenTab] = useState("");
 
   const handleChosenTabChange = (e: React.ChangeEvent<HTMLInputElement>) => setChosenTab(e.target.value);
@@ -23,6 +22,12 @@ export const TabPicker = () => {
         return <div>Invalid Selection {chosenTab}!</div>;
     }
   };
+
+  const tabSelectionResult = (
+    <>
+      You Chose <code>{chosenTab}</code>
+    </>
+  );
 
   return (
     <div
@@ -48,9 +53,7 @@ export const TabPicker = () => {
           <input type="radio" value="scoremenu" name="tabname" /> Score Screen
         </span>
       </div>
-      <div>
-        You chose <code>{chosenTab}</code>
-      </div>
+      <div>{chosenTab ? tabSelectionResult : ""}</div>
     </div>
   );
 };
