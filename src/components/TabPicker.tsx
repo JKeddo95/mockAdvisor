@@ -23,10 +23,10 @@ export const TabPicker = () => {
     }
   };
 
-  const tabSelectionResult = (
-    <>
-      You Chose <code>{chosenTab}</code>
-    </>
+  const tabSelectionResult = chosenTab && (
+    <code>
+      You chose <i>{chosenTab}</i>!
+    </code>
   );
 
   return (
@@ -41,7 +41,7 @@ export const TabPicker = () => {
         marginTop: "3em",
       }}
     >
-      <span> Choose Your Tab:</span>
+      <span> Choose Your Tab: {tabSelectionResult}</span>
       <div onChange={handleChosenTabChange} style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", maxWidth: "50%" }}>
         <span style={{ display: "flex", justifyContent: "space-between" }}>
           <input type="radio" value="kidsleaderboard" name="tabname" /> Kids Leaderboard
@@ -53,7 +53,7 @@ export const TabPicker = () => {
           <input type="radio" value="scoremenu" name="tabname" /> Score Screen
         </span>
       </div>
-      <div>{chosenTab ? tabSelectionResult : ""}</div>
+      <div>{chosenTab && getTabContent()}</div>
     </div>
   );
 };
