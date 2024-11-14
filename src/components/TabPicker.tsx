@@ -47,10 +47,10 @@ export const TabPicker = () => {
           <input type="radio" value="kidsleaderboard" name="tabname" /> Kids Leaderboard
         </span>
         <span style={{ display: "flex", justifyContent: "space-between" }}>
-          <input type="radio" value="kidsmenu" name="tabname" /> Kids Menu
+          <input type="radio" value="scoremenu" name="tabname" /> Score Screen
         </span>
         <span style={{ display: "flex", justifyContent: "space-between" }}>
-          <input type="radio" value="scoremenu" name="tabname" /> Score Screen
+          <input type="radio" value="kidsmenu" name="tabname" /> Kids Menu
         </span>
       </div>
       <div>{chosenTab && getTabContent()}</div>
