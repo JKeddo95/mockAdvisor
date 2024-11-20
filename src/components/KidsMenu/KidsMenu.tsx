@@ -2,13 +2,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Kid, KIDS_LIST } from "../library/usefulConstants";
 
-type KidListProps = {
-  kids: Kid[];
-};
-
-// Usage
-// <KidList kids={SAMPLE_KIDS} />
-
 export const KidsMenu = () => {
   localStorage.setItem(KIDS_LIST, `[{"name": "anna", "age": 2}, {"name": "zack", "age": 3}]`);
   const kidsString = localStorage.getItem(KIDS_LIST);
@@ -18,9 +11,8 @@ export const KidsMenu = () => {
     return <></>;
   }
 
-  const [dialogContent, setDialogContent] = useState(null);
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
+  //   const [name, setName] = useState("");
+  //   const [age, setAge] = useState("");
   const [kidsList, setKidsList] = useState([]);
 
   useEffect(() => {
@@ -42,41 +34,21 @@ export const KidsMenu = () => {
     }
   }, []);
 
-  const dialogRef = useRef<HTMLDialogElement>(null);
+  //   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
+  //   const handleAgeChange = (e: React.ChangeEvent<HTMLInputElement>) => setAge(e.target.value);
 
-  function toggleDialog() {
-    if (!dialogRef.current) {
-      console.log("Problem initializing dialogRef");
-      return;
-    }
-
-    // Toggle dialog but ensure to reset state first between invocations so that multiple kids can be added.
-    dialogRef.current.hasAttribute("open") ? dialogRef.current.close() : dialogRef.current.showModal();
-    setName("");
-    setAge("");
-  }
-
-  //   function addKid() {
-  //     if (!name || !age || )
-  //     kids.push()
-  //   }
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
-  const handleAgeChange = (e: React.ChangeEvent<HTMLInputElement>) => setAge(e.target.value);
-
-  const dialogComponent = (
-    <dialog id="addKidModal" ref={dialogRef}>
-      <div>Add Kid</div>
-      <span>Name: </span>
-      <input value={name} onChange={handleNameChange} />
-      <span>Age: </span>
-      <input value={String(age)} onChange={handleAgeChange} />
-      {dialogContent}
-      <button id="addKidSubmit" onClick={toggleDialog}>
-        Submit
-      </button>
-    </dialog>
-  );
+  //   const dialogComponent = (
+  //     <dialog id="addKidModal" ref={dialogRef}>
+  //       <div>Add Kid</div>
+  //       <span>Name: </span>
+  //       <input value={name} onChange={handleNameChange} />
+  //       <span>Age: </span>
+  //       <input value={String(age)} onChange={handleAgeChange} />
+  //       <button id="addKidSubmit" onClick={toggleDialog}>
+  //         Submit
+  //       </button>
+  //     </dialog>
+  //   );
 
   if (!kidsString) {
     console.log("No kids set yet");
@@ -89,11 +61,11 @@ export const KidsMenu = () => {
       <br />
       <h2>List of Kids</h2>
       <div>
-        <div>
+        {/* <div>
           <button id="addKidButton" onClick={toggleDialog}>
             Add Kid
           </button>
-        </div>
+        </div> */}
         {kidsList.map((kid: Kid) => (
           <div style={{ float: "left" }} key={kid.name}>
             <span>
@@ -110,8 +82,56 @@ export const KidsMenu = () => {
             </span>
           </div>
         ))}
-        {dialogComponent}
+        <AddKidPopup />
       </div>
+    </div>
+  );
+};
+
+const AddKidPopup = () => {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
+  const handleAgeChange = (e: React.ChangeEvent<HTMLInputElement>) => setAge(e.target.value);
+
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
+  const toggleDialog = () => {
+    if (dialogRef === null || !dialogRef?.current?.hasAttribute) {
+      return false;
+    }
+    try {
+      dialogRef.current.hasAttribute("open") ? dialogRef.current.close() : dialogRef.current.showModal();
+    } catch (e) {
+      console.warn("There was a problem toggling the AddKid popup/dialog, errMessage: ", JSON.stringify(e));
+    }
+  };
+
+  const submitDialog = () => {
+    console.log(`Adding kid with age ${age} and name ${name}`);
+    setName("");
+    setAge("");
+    toggleDialog();
+  };
+
+  return (
+    <div>
+      <button id="addKidButton" onClick={toggleDialog}>
+        Add Kid
+      </button>
+      <dialog id="addKidModal" ref={dialogRef}>
+        <div>Add Kid</div>
+        <div>
+          <span>Name: </span>
+          <input value={name} onChange={handleNameChange} />
+        </div>
+        <div>
+          {" "}
+          <span>Age: </span> <input value={String(age)} onChange={handleAgeChange} />
+        </div>
+        <button id="addKidSubmit" onClick={submitDialog}>
+          Submit
+        </button>
+      </dialog>
     </div>
   );
 };
